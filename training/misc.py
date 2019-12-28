@@ -89,8 +89,8 @@ def save_image_grid(images, filename, drange=[0,1], grid_size=None):
 #----------------------------------------------------------------------------
 # Locating results.
 
-def locate_run_dir(ospath,run_id_or_run_dir):
-    os.chdir(ospath)
+def locate_run_dir(run_id_or_run_dir):
+    os.chdir("/content/gdrive/My Drive/stylegan/")
     if isinstance(run_id_or_run_dir, str):
         if os.path.isdir(run_id_or_run_dir):
             return run_id_or_run_dir
@@ -153,8 +153,9 @@ def get_id_string_for_network_pkl(network_pkl):
 def load_network_pkl(run_id_or_run_dir_or_network_pkl, snapshot_or_network_pkl=None):
     return load_pkl(locate_network_pkl(run_id_or_run_dir_or_network_pkl, snapshot_or_network_pkl))
 
-def parse_config_for_previous_run(ospath,run_id):
-    run_dir = locate_run_dir(ospath, run_id)
+def parse_config_for_previous_run(run_id):
+    
+    run_dir = locate_run_dir(run_id)
 
     # Parse config.txt.
     cfg = defaultdict(dict)
