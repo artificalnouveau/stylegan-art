@@ -121,6 +121,7 @@ def list_network_pkls(run_id_or_run_dir, include_final=True):
     return pkls
 
 def locate_network_pkl(run_id_or_run_dir_or_network_pkl, snapshot_or_network_pkl=None):
+    os.chdir("/content/gdrive/My Drive/stylegan/")
     for candidate in [snapshot_or_network_pkl, run_id_or_run_dir_or_network_pkl]:
         if isinstance(candidate, str):
             if os.path.isfile(candidate):
@@ -135,6 +136,7 @@ def locate_network_pkl(run_id_or_run_dir_or_network_pkl, snapshot_or_network_pkl
 
     for pkl in pkls:
         try:
+            os.chdir("/content/gdrive/My Drive/stylegan/")
             name = os.path.splitext(os.path.basename(pkl))[0]
             number = int(name.split('-')[-1])
             if number == snapshot_or_network_pkl:
@@ -154,7 +156,7 @@ def load_network_pkl(run_id_or_run_dir_or_network_pkl, snapshot_or_network_pkl=N
     return load_pkl(locate_network_pkl(run_id_or_run_dir_or_network_pkl, snapshot_or_network_pkl))
 
 def parse_config_for_previous_run(run_id):
-    
+
     run_dir = locate_run_dir(run_id)
 
     # Parse config.txt.
